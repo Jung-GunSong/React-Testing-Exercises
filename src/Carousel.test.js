@@ -2,7 +2,7 @@ import { render, fireEvent } from "@testing-library/react";
 import Carousel from "./Carousel";
 import TEST_IMAGES from "./_testCommon.js";
 
-it("works when you click on the right arrow", function() {
+it("works when you click on the right arrow", function () {
   const { container } = render(
     <Carousel
       photos={TEST_IMAGES}
@@ -30,35 +30,62 @@ it("works when you click on the right arrow", function() {
   ).toBeInTheDocument();
 });
 
-it("rends Carousel without crashing", function(){
-  render( <Carousel
+it("rends Carousel without crashing", function () {
+  render(<Carousel
     photos={TEST_IMAGES}
     title="images for testing"
   />);
-})
+});
 
 
-it("rends Carousel without crashing", function(){
+it("rends Carousel without crashing", function () {
   const { container } = render(
     <Carousel
       photos={TEST_IMAGES}
       title="images for testing"
-    />)
+    />);
 
-    expect(container).toMatchSnapshot();
-})
+  expect(container).toMatchSnapshot();
+});
 
-it("clicking left arrow goes to previous card", function(){
+it("clicking left arrow goes to previous card", function () {
   const { container } = render(
     <Carousel
       photos={TEST_IMAGES}
       title="images for testing"
-    />)
+    />);
 
-    fireEvent.click(container.querySelector(".bi-arrow-right-circle"));
-    fireEvent.click(container.querySelector(".bi-arrow-left-circle"));
+  fireEvent.click(container.querySelector(".bi-arrow-right-circle"));
+  fireEvent.click(container.querySelector(".bi-arrow-left-circle"));
 
-    const img = container.querySelector("img")
-    expect(img.getAttribute("src")).toContain("test1.com");
-})
+  const img = container.querySelector("img");
+  expect(img.getAttribute("src")).toContain("test1.com");
+});
+
+it('hides left arrow when on first image', function () {
+  const { container } = render(
+    <Carousel
+      photos={TEST_IMAGES}
+      title="images for testing"
+    />);
+
+  const leftArrow = container.querySelector(".bi-arrow-left-circle");
+
+  expect(leftArrow).not.toBeInTheDocument();
+});
+
+it('hides right arrow when on last image', function () {
+  const { container } = render(
+    <Carousel
+      photos={TEST_IMAGES}
+      title="images for testing"
+    />);
+
+  fireEvent.click(container.querySelector(".bi-arrow-right-circle"));
+  fireEvent.click(container.querySelector(".bi-arrow-right-circle"));
+
+  const rightArrow = container.querySelector(".bi-arrow-right-circle");
+
+  expect(rightArrow).not.toBeInTheDocument();
+});
 

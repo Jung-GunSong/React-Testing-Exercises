@@ -30,24 +30,29 @@ function Carousel({ photos, title }) {
     setCurrCardIdx(currCardIdx - 1);
   }
 
+  const rightArrowCondition = currCardIdx < (total - 1);
+  const leftArrowCondition = currCardIdx > 0;
+
   return (
     <div className="Carousel">
       <h1>{title}</h1>
       <div className="Carousel-main">
-        <i
-          className="bi bi-arrow-left-circle"
-          onClick={goBackward}
-        />
+        {leftArrowCondition &&
+          <i
+            className="bi bi-arrow-left-circle"
+            onClick={goBackward}
+          />}
         <Card
           caption={currCard.caption}
           src={currCard.src}
           currNum={currCardIdx + 1}
           totalNum={total}
         />
-        <i
-          className="bi bi-arrow-right-circle"
-          onClick={goForward}
-        />
+        {rightArrowCondition &&
+          <i
+            className="bi bi-arrow-right-circle"
+            onClick={goForward}
+          />}
       </div>
     </div>
   );
