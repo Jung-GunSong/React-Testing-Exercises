@@ -30,7 +30,7 @@ it("works when you click on the right arrow", function () {
   ).toBeInTheDocument();
 });
 
-it("rends Carousel without crashing", function () {
+it("render Carousel without crashing", function () {
   render(<Carousel
     photos={TEST_IMAGES}
     title="images for testing"
@@ -38,7 +38,7 @@ it("rends Carousel without crashing", function () {
 });
 
 
-it("rends Carousel without crashing", function () {
+it("matches snapshot", function () {
   const { container } = render(
     <Carousel
       photos={TEST_IMAGES}
@@ -55,6 +55,8 @@ it("clicking left arrow goes to previous card", function () {
       title="images for testing"
     />);
 
+  //TODO: interdisperse events and see what they expect after each click
+  // when we click, test it
   fireEvent.click(container.querySelector(".bi-arrow-right-circle"));
   fireEvent.click(container.querySelector(".bi-arrow-left-circle"));
 
@@ -81,6 +83,8 @@ it('hides right arrow when on last image', function () {
       title="images for testing"
     />);
 
+  //TODO: interdisperse events and see what they expect after each click
+  // when we click, test it
   fireEvent.click(container.querySelector(".bi-arrow-right-circle"));
   fireEvent.click(container.querySelector(".bi-arrow-right-circle"));
 

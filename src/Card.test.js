@@ -4,7 +4,7 @@ import TEST_IMAGES from "./_testCommon.js";
 
 const { src, caption } = TEST_IMAGES[0];
 
-it("rends Carousel without crashing", function () {
+it("render Carousel without crashing", function () {
   render(<Card
     caption={caption}
     src={src}
@@ -14,7 +14,7 @@ it("rends Carousel without crashing", function () {
 });
 
 
-it("rends Carousel without crashing", function () {
+it("matches snapshot", function () {
   const { container } = render(
     <Card
       caption={caption}

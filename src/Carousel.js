@@ -33,6 +33,9 @@ function Carousel({ photos, title }) {
   const rightArrowCondition = currCardIdx < (total - 1);
   const leftArrowCondition = currCardIdx > 0;
 
+  //TODO: CSS to add class name hidden to hide arrows
+  // ternary to determine condition for hidden class
+
   return (
     <div className="Carousel">
       <h1>{title}</h1>
